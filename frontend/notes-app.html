@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Мои заметки</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu">
+            <h1 class="menu__title">Мои заметки</h1>
+            <button class="menu__button" id="newNoteBtn">Новая заметка</button>
+            <h2 class="spisok">Теги</h2>
+            <div class="spisok__item active" data-tag="all">Все</div>
+            <div class="spisok__item" data-tag="ideas">Идеи</div>
+            <div class="spisok__item" data-tag="personal">Личное</div>
+            <div class="spisok__item" data-tag="work">Работа</div>
+            <div class="spisok__item" data-tag="shopping">Список покупок</div>
+        </div>
+        <div class="content">
+            <div class="search">
+                <input type="text" class="input" id="searchInput" placeholder="Поиск">
+                <button class="search__button" id="searchBtn"></button>
+            </div>
+            <div class="zadachi" id="notesContainer">
+                <!-- Заметки будут появляться здесь -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для добавления/редактирования заметки -->
+    <div class="modal" id="noteModal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 id="modalTitle">Новая заметка</h2>
+                <button class="modal__close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="form-group">
+                    <label for="noteTitle">Заголовок:</label>
+                    <input type="text" id="noteTitle" class="modal__input" placeholder="Введите заголовок">
+                </div>
+                <div class="form-group">
+                    <label for="noteContent">Содержание:</label>
+                    <textarea id="noteContent" class="modal__textarea" placeholder="Введите содержание заметки"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="noteTag">Тег:</label>
+                    <select id="noteTag" class="modal__select">
+                        <option value="work">Работа</option>
+                        <option value="ideas">Идеи</option>
+                        <option value="personal">Личное</option>
+                        <option value="shopping">Список покупок</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="modal__button modal__button--cancel" id="modalCancel">Отмена</button>
+                <button class="modal__button modal__button--save" id="modalSave">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
