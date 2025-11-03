@@ -43,20 +43,18 @@ function serveStaticFile(response, filePath) {
 }
 
 function servePage(request, response) {
-    // CORS для API
     if (request.url.startsWith('/api/')) {
-        response.setHeader('Access-Control-Allow-Origin', '*');
-        response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-        response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        response.setHeader('Access-Control-Allow-Origin', '*'); // определяет какие порты использовать
+        response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); //определяет методы
+        response.setHeader('Access-Control-Allow-Headers', 'Content-Type');// определяет запросы для использования
     }
-
+    //браузер отправляет метод options для преверки прав
     if (request.method === 'OPTIONS') {
         response.writeHead(200);
         response.end();
         return;
     }
 
-    // API routes
     if (request.url === '/api/notes' && request.method === 'GET') {
         response.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         response.end(JSON.stringify(notes));
@@ -122,10 +120,8 @@ function servePage(request, response) {
         return;
     }
 
-    // Static files
     let filePath = request.url === '/' ? '/index.html' : request.url;
     
-    // Serve the main HTML files
     if (filePath === '/index.html' || filePath === '/main' || filePath === '/notes-app') {
         if (filePath === '/main') filePath = '/main.html';
         else if (filePath === '/notes-app') filePath = '/notes-app.html';
@@ -136,7 +132,7 @@ function servePage(request, response) {
 }
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = 3001;
 const server = createServer(servePage);
 
 server.listen(port, hostname, () => {
